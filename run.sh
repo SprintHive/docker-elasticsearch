@@ -1,6 +1,9 @@
 #!/bin/sh
 
 BASE=/elasticsearch
+# This hack for Kubernetes deployments is currently needed until https://github.com/kubernetes/kubernetes/issues/30427 is resolved
+HOSTNAME=$(hostname)
+export K8_STATEFULSET_ID=${HOSTNAME##*-}
 
 # allow for memlock
 ulimit -l unlimited
